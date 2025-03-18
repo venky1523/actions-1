@@ -3,30 +3,29 @@ name: Generate ASCII Artwork
 on: push
 
 jobs:
-    first_job:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout Repo
-          uses: actions/checkout@v4
+  first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-        - name: Install Cowsay program
-          run: sudo apt-get update && sudo apt-get install -y cowsay
+      - name: Install Cowsay program
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cowsay
+          echo "Cowsay installed successfully"
 
-        - name: Execute Cowsay CMD
-          run: cowsay -f dragon "Run for cover, I am a Dragon....RAWR" >> dragon.txt
+      - name: Verify Cowsay Installation
+        run: cowsay "Cowsay is installed!"
 
-             
-        - name: Test File Exists
-          run: grep -i "dragon" dragon.txt
+      - name: Execute Cowsay CMD
+        run: /usr/games/cowsay -f dragon "Run for cover, I am a Dragon....RAWR" >> dragon.txt
 
-        - name: Read file
-          run: cat dragon.txt
+      - name: Test File Exists
+        run: grep -i "dragon" dragon.txt
 
-        - name: List Repo Files
-          run: ls- ltra
+      - name: Read file
+        run: cat dragon.txt
 
-       # - name: List files
-       #   run: ls
-
-       # - name: Read file
-      #    run: cat README.md
+      - name: List Repo Files
+        run: ls -ltra
